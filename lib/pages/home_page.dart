@@ -1,6 +1,8 @@
 import 'package:fl_themes/components/box.dart';
 import 'package:fl_themes/components/button.dart';
+import 'package:fl_themes/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -11,8 +13,13 @@ class HomePage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: MyBox(
-          color: Colors.blue[300],
-          child: MyButton(color: Colors.blue[200], onTap: () {}),
+          color: Theme.of(context).colorScheme.primary,
+          child: MyButton(
+            color: Theme.of(context).colorScheme.secondary,
+            onTap: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+          ),
         ),
       ),
     );
